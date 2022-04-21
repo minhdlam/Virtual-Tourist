@@ -16,6 +16,7 @@
 		60DEFEA82810DF0300F46CC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DEFEA62810DF0300F46CC7 /* LaunchScreen.storyboard */; };
 		60DEFEB42810E46C00F46CC7 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFEB32810E46C00F46CC7 /* PhotoController.swift */; };
 		60DEFEB82810E66700F46CC7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFEB72810E66700F46CC7 /* PhotoCell.swift */; };
+		60DEFEBA2810EFDF00F46CC7 /* FlickrManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFEB92810EFDF00F46CC7 /* FlickrManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		60DEFEA92810DF0300F46CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60DEFEB32810E46C00F46CC7 /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		60DEFEB72810E66700F46CC7 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		60DEFEB92810EFDF00F46CC7 /* FlickrManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		60DEFEAF2810DF7500F46CC7 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				60DEFEB92810EFDF00F46CC7 /* FlickrManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				60DEFEB42810E46C00F46CC7 /* PhotoController.swift in Sources */,
 				60DEFEA32810DF0100F46CC7 /* VirtualTourist.xcdatamodeld in Sources */,
 				60DEFE9D2810DF0100F46CC7 /* MapController.swift in Sources */,
+				60DEFEBA2810EFDF00F46CC7 /* FlickrManager.swift in Sources */,
 				60DEFE992810DF0100F46CC7 /* AppDelegate.swift in Sources */,
 				60DEFEB82810E66700F46CC7 /* PhotoCell.swift in Sources */,
 				60DEFE9B2810DF0100F46CC7 /* SceneDelegate.swift in Sources */,
