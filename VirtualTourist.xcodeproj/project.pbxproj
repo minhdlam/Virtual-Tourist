@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601DD3562813056700EDBD08 /* FlickrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601DD3552813056700EDBD08 /* FlickrResponse.swift */; };
 		60CD59182812462700B4BD84 /* UIViewController Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD59172812462700B4BD84 /* UIViewController Ext..swift */; };
 		60DEFE992810DF0100F46CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFE982810DF0100F46CC7 /* AppDelegate.swift */; };
 		60DEFE9B2810DF0100F46CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFE9A2810DF0100F46CC7 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		601DD3552813056700EDBD08 /* FlickrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrResponse.swift; sourceTree = "<group>"; };
 		60CD59172812462700B4BD84 /* UIViewController Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Ext..swift"; sourceTree = "<group>"; };
 		60DEFE952810DF0100F46CC7 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DEFE982810DF0100F46CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		60DEFEB02810DFAB00F46CC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				601DD3552813056700EDBD08 /* FlickrResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601DD3562813056700EDBD08 /* FlickrResponse.swift in Sources */,
 				60DEFEB42810E46C00F46CC7 /* PhotoController.swift in Sources */,
 				60DEFEA32810DF0100F46CC7 /* VirtualTourist.xcdatamodeld in Sources */,
 				60CD59182812462700B4BD84 /* UIViewController Ext..swift in Sources */,

@@ -9,9 +9,6 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
     
-    static let identifier = "PhotoCell"
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
 }

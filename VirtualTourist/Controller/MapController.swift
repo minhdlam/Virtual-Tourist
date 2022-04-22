@@ -21,7 +21,7 @@ class MapController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var mapview: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - Lifecyle
 
@@ -45,17 +45,17 @@ class MapController: UIViewController {
             return
         }
         
-        let gestureLocation: CGPoint = sender.location(in: mapview)
-        let coordinate: CLLocationCoordinate2D = mapview.convert(gestureLocation, toCoordinateFrom: mapview)
+        let gestureLocation: CGPoint = sender.location(in: mapView)
+        let coordinate: CLLocationCoordinate2D = mapView.convert(gestureLocation, toCoordinateFrom: mapView)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotations.append(annotation)
-        mapview.addAnnotation(annotation)
+        mapView.addAnnotation(annotation)
         
         saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
         saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        zoomInMap(coordinate: coordinate)
+        zoomInMap(mapView: mapView, coordinate: coordinate)
     }
     
     // MARK: - Helper Methods
@@ -64,7 +64,7 @@ class MapController: UIViewController {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(addPinsToMap))
         gesture.minimumPressDuration = 0.5
         gesture.delegate = self
-        mapview.addGestureRecognizer(gesture)
+        mapView.addGestureRecognizer(gesture)
     }
     
     func saveToUserDefaults(latitude: Double, longitude: Double) {
@@ -97,23 +97,17 @@ class MapController: UIViewController {
                 annotation.coordinate = coordinate
                 annotations.append(annotation)
             }
-            mapview.addAnnotations(annotations)
+            mapView.addAnnotations(annotations)
         } catch let error {
             showError(title: "Unable to fetch pin locations.", message: error.localizedDescription)
         }
-    }
-    
-    func zoomInMap(coordinate: CLLocationCoordinate2D) {
-        let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapview.setRegion(region, animated: true)
     }
     
     func zoomToLastLocation() {
         guard let latitude = defaults.object(forKey: "latitude") as? Double else { return }
         guard let longitude = defaults.object(forKey: "longitude") as? Double else { return }
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        zoomInMap(coordinate: coordinate)
+        zoomInMap(mapView: mapView, coordinate: coordinate)
     }
 }
 
@@ -126,5 +120,11 @@ extension MapController: UIGestureRecognizerDelegate {
 // MARK: - MKMapViewDelegate
 
 extension MapController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation {
+            let photoController = storyboard?.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
+            photoController.coordinate = annotation.coordinate
+            navigationController?.pushViewController(photoController, animated: true)
+        }
+    }
 }
