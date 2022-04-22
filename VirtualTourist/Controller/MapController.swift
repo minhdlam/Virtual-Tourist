@@ -7,12 +7,14 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class MapController: UIViewController {
     
     // MARK: - Properties
     
     let defaults = UserDefaults.standard
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // MARK: - IBOutlets
     
@@ -45,6 +47,7 @@ class MapController: UIViewController {
         let annotation: MKPointAnnotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         mapview.addAnnotation(annotation)
         
@@ -63,6 +66,19 @@ class MapController: UIViewController {
     func saveToUserDefaults(latitude: Double, longitude: Double) {
         defaults.set(latitude, forKey: "latitude")
         defaults.set(longitude, forKey: "longitude")
+    }
+    
+    func saveToCoreData(latitude: Double, longitude: Double) {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Pin", in: context) else { return }
+        let pin = NSManagedObject(entity: entity, insertInto: context)
+        pin.setValue(latitude, forKey: "latitude")
+        pin.setValue(longitude, forKey: "longitude")
+        
+        do {
+            try context.save()
+        } catch let error {
+            showError(title: "Could not save location.", message: error.localizedDescription)
+        }
     }
     
     func zoomInMap(coordinate: CLLocationCoordinate2D) {

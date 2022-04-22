@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60CD59182812462700B4BD84 /* UIViewController Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD59172812462700B4BD84 /* UIViewController Ext..swift */; };
 		60DEFE992810DF0100F46CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFE982810DF0100F46CC7 /* AppDelegate.swift */; };
 		60DEFE9B2810DF0100F46CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFE9A2810DF0100F46CC7 /* SceneDelegate.swift */; };
 		60DEFE9D2810DF0100F46CC7 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEFE9C2810DF0100F46CC7 /* MapController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60CD59172812462700B4BD84 /* UIViewController Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Ext..swift"; sourceTree = "<group>"; };
 		60DEFE952810DF0100F46CC7 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DEFE982810DF0100F46CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60DEFE9A2810DF0100F46CC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60CD59162812461200B4BD84 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				60CD59172812462700B4BD84 /* UIViewController Ext..swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		60DEFE8C2810DF0100F46CC7 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +78,7 @@
 				60DEFEB02810DFAB00F46CC7 /* Model */,
 				60DEFEB12810DFB300F46CC7 /* View */,
 				60DEFEB22810DFBB00F46CC7 /* Controller */,
+				60CD59162812461200B4BD84 /* Utils */,
 				60DEFE982810DF0100F46CC7 /* AppDelegate.swift */,
 				60DEFE9A2810DF0100F46CC7 /* SceneDelegate.swift */,
 				60DEFE9E2810DF0100F46CC7 /* Main.storyboard */,
@@ -184,6 +195,7 @@
 			files = (
 				60DEFEB42810E46C00F46CC7 /* PhotoController.swift in Sources */,
 				60DEFEA32810DF0100F46CC7 /* VirtualTourist.xcdatamodeld in Sources */,
+				60CD59182812462700B4BD84 /* UIViewController Ext..swift in Sources */,
 				60DEFE9D2810DF0100F46CC7 /* MapController.swift in Sources */,
 				60DEFEBA2810EFDF00F46CC7 /* FlickrManager.swift in Sources */,
 				60DEFE992810DF0100F46CC7 /* AppDelegate.swift in Sources */,
