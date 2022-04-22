@@ -16,6 +16,9 @@ class MapController: UIViewController {
     let defaults = UserDefaults.standard
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var pins = [Pin]()
+    var annotations = [MKAnnotation]()
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var mapview: MKMapView!
@@ -32,6 +35,7 @@ class MapController: UIViewController {
         super.viewWillAppear(animated)
         
         zoomToLastLocation()
+        fetchPinsFromCoreData()
     }
     
     // MARK: - Action Handlers
@@ -44,13 +48,13 @@ class MapController: UIViewController {
         let gestureLocation: CGPoint = sender.location(in: mapview)
         let coordinate: CLLocationCoordinate2D = mapview.convert(gestureLocation, toCoordinateFrom: mapview)
         
-        let annotation: MKPointAnnotation = MKPointAnnotation()
+        let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        
+        annotations.append(annotation)
         mapview.addAnnotation(annotation)
         
+        saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
         zoomInMap(coordinate: coordinate)
     }
     
@@ -77,7 +81,25 @@ class MapController: UIViewController {
         do {
             try context.save()
         } catch let error {
-            showError(title: "Could not save location.", message: error.localizedDescription)
+            showError(title: "Unable to save location.", message: error.localizedDescription)
+        }
+    }
+    
+    func fetchPinsFromCoreData() {
+        do {
+            pins = try context.fetch(Pin.fetchRequest())
+            for pin in pins {
+                let latitude = CLLocationDegrees(pin.latitude)
+                let longitude = CLLocationDegrees(pin.longitude)
+                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotations.append(annotation)
+            }
+            mapview.addAnnotations(annotations)
+        } catch let error {
+            showError(title: "Unable to fetch pin locations.", message: error.localizedDescription)
         }
     }
     
@@ -98,5 +120,11 @@ class MapController: UIViewController {
 // MARK: - UIGestureRecognizerDelegate
 
 extension MapController: UIGestureRecognizerDelegate {
+    
+}
+
+// MARK: - MKMapViewDelegate
+
+extension MapController: MKMapViewDelegate {
     
 }
