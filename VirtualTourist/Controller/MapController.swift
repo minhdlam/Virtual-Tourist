@@ -42,21 +42,15 @@ class MapController: UIViewController {
     // MARK: - Action Handlers
     
     @objc func addPinsToMap(_ sender: UILongPressGestureRecognizer) {
-        if sender.state != .began {
-            return
+        if sender.state == .began {
+            let gestureLocation: CGPoint = sender.location(in: mapView)
+            let coordinate: CLLocationCoordinate2D = mapView.convert(gestureLocation, toCoordinateFrom: mapView)
+            
+            saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            fetchPinsFromCoreData()
+            zoomInMap(mapView: mapView, coordinate: coordinate)
         }
-        
-        let gestureLocation: CGPoint = sender.location(in: mapView)
-        let coordinate: CLLocationCoordinate2D = mapView.convert(gestureLocation, toCoordinateFrom: mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotations.append(annotation)
-        mapView.addAnnotation(annotation)
-        
-        saveToUserDefaults(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        saveToCoreData(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        zoomInMap(mapView: mapView, coordinate: coordinate)
     }
     
     // MARK: - Helper Methods
@@ -104,11 +98,53 @@ class MapController: UIViewController {
         }
     }
     
+    func getPin(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> Pin? {
+        for pin in pins {
+            if (pin.latitude == latitude && pin.longitude == longitude) {
+                return pin
+            }
+        }
+        
+        return nil
+    }
+    
     func zoomToLastLocation() {
         guard let latitude = defaults.object(forKey: "latitude") as? Double else { return }
         guard let longitude = defaults.object(forKey: "longitude") as? Double else { return }
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         zoomInMap(mapView: mapView, coordinate: coordinate)
+    }
+    
+    func deleteFromCoreData() {
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        
+        do {
+            let pins = try context.fetch(fetchRequest)
+            for pin in pins {
+                context.delete(pin)
+                print("DEBUG: pin deleted successfully")
+            }
+        } catch let error {
+            showError(title: "Unable to fetch photos from Core Data.", message: error.localizedDescription)
+        }
+        
+        try? context.save()
+    }
+    
+    func deletePhotosFromCoreData() {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        
+        do {
+            let photos = try context.fetch(fetchRequest)
+            for photo in photos {
+                context.delete(photo)
+                print("DEBUG: photo deleted successfully")
+            }
+        } catch let error {
+            showError(title: "Unable to fetch photos from Core Data.", message: error.localizedDescription)
+        }
+        
+        try? context.save()
     }
 }
 
@@ -123,8 +159,9 @@ extension MapController: UIGestureRecognizerDelegate {
 extension MapController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation {
+            mapView.deselectAnnotation(annotation, animated: false)
             let photoController = storyboard?.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
-            photoController.coordinate = annotation.coordinate
+            photoController.pin = getPin(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             navigationController?.pushViewController(photoController, animated: true)
         }
     }
