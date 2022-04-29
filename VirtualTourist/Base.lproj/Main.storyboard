@@ -70,12 +70,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5J1-Af-SkA">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5J1-Af-SkA">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-rd-G34">
-                                                    <rect key="frame" x="54" y="54" width="20" height="20"/>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-rd-G34">
+                                                    <rect key="frame" x="45.5" y="45.5" width="37" height="37"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -88,7 +88,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="qgf-rd-G34" id="QE1-Qz-VvB"/>
+                                            <outlet property="activityIndicator" destination="qgf-rd-G34" id="I8j-ph-fu5"/>
                                             <outlet property="imageView" destination="5J1-Af-SkA" id="nT2-TQ-oYS"/>
                                         </connections>
                                     </collectionViewCell>
@@ -98,9 +98,6 @@
                                     <outlet property="delegate" destination="Tf8-L0-cTt" id="iRy-gs-ykr"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8Mg-K2-WVD">
-                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aR2-tE-l60">
                                 <rect key="frame" x="135" y="811" width="144" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -118,33 +115,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xYV-hv-tZJ">
+                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dff-uC-t6c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xDq-aa-GlZ" firstAttribute="top" secondItem="8Mg-K2-WVD" secondAttribute="bottom" constant="12" id="1O7-L5-CdR"/>
                             <constraint firstItem="dff-uC-t6c" firstAttribute="trailing" secondItem="S3G-1e-13y" secondAttribute="trailing" id="4Kv-vZ-2tr"/>
                             <constraint firstItem="FFx-Ma-PPS" firstAttribute="top" secondItem="S3G-1e-13y" secondAttribute="bottom" id="9Lx-oN-cLb"/>
                             <constraint firstItem="aR2-tE-l60" firstAttribute="centerX" secondItem="dff-uC-t6c" secondAttribute="centerX" id="Dql-DN-4Mr"/>
-                            <constraint firstItem="8Mg-K2-WVD" firstAttribute="centerX" secondItem="dff-uC-t6c" secondAttribute="centerX" id="M0p-B9-zN9"/>
                             <constraint firstItem="dff-uC-t6c" firstAttribute="bottom" secondItem="aR2-tE-l60" secondAttribute="bottom" constant="12" id="Ota-Vq-yyD"/>
                             <constraint firstItem="xDq-aa-GlZ" firstAttribute="centerX" secondItem="dff-uC-t6c" secondAttribute="centerX" id="QCu-76-iyJ"/>
+                            <constraint firstItem="xYV-hv-tZJ" firstAttribute="centerY" secondItem="dff-uC-t6c" secondAttribute="centerY" id="YwC-Vq-uCq"/>
                             <constraint firstItem="S3G-1e-13y" firstAttribute="leading" secondItem="dff-uC-t6c" secondAttribute="leading" id="ZCI-sx-zSu"/>
+                            <constraint firstItem="xDq-aa-GlZ" firstAttribute="top" secondItem="xYV-hv-tZJ" secondAttribute="bottom" constant="12" id="Zna-8G-hhU"/>
                             <constraint firstItem="S3G-1e-13y" firstAttribute="height" secondItem="Eau-Ie-brj" secondAttribute="height" multiplier="1/6" id="ies-We-yDM"/>
                             <constraint firstItem="S3G-1e-13y" firstAttribute="top" secondItem="dff-uC-t6c" secondAttribute="top" id="osd-e2-bzZ"/>
                             <constraint firstItem="FFx-Ma-PPS" firstAttribute="leading" secondItem="dff-uC-t6c" secondAttribute="leading" id="pPW-Ne-oGz"/>
-                            <constraint firstItem="8Mg-K2-WVD" firstAttribute="centerY" secondItem="dff-uC-t6c" secondAttribute="centerY" id="tEF-mA-bN3"/>
                             <constraint firstItem="FFx-Ma-PPS" firstAttribute="bottom" secondItem="aR2-tE-l60" secondAttribute="top" constant="-24" id="ts5-HZ-9Dq"/>
+                            <constraint firstItem="xYV-hv-tZJ" firstAttribute="centerX" secondItem="dff-uC-t6c" secondAttribute="centerX" id="xUF-Hx-uys"/>
                             <constraint firstItem="dff-uC-t6c" firstAttribute="trailing" secondItem="FFx-Ma-PPS" secondAttribute="trailing" id="zog-3B-1P4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dFa-M1-Mro"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="8Mg-K2-WVD" id="aYh-ng-rhI"/>
+                        <outlet property="activityIndicator" destination="xYV-hv-tZJ" id="TJp-5V-ph1"/>
                         <outlet property="collectionView" destination="FFx-Ma-PPS" id="act-7L-Cm2"/>
-                        <outlet property="fetchingLabel" destination="xDq-aa-GlZ" id="z0n-9J-dAV"/>
                         <outlet property="flowLayout" destination="svF-td-f5a" id="Iv3-0A-fll"/>
                         <outlet property="mapView" destination="S3G-1e-13y" id="WWd-zb-cfU"/>
+                        <outlet property="messageLabel" destination="xDq-aa-GlZ" id="m1X-x0-lnl"/>
+                        <outlet property="newCollectionButton" destination="aR2-tE-l60" id="N3z-4z-Qsv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IqH-7m-DSd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -171,6 +172,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="placeholder" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

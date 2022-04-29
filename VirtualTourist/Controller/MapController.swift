@@ -29,7 +29,6 @@ class MapController: UIViewController {
         super.viewDidLoad()
         
         setupLongPressGesture()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
