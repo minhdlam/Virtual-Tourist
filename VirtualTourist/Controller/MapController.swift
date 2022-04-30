@@ -113,38 +113,6 @@ class MapController: UIViewController {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         zoomInMap(mapView: mapView, coordinate: coordinate)
     }
-    
-    func deleteFromCoreData() {
-        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
-        
-        do {
-            let pins = try context.fetch(fetchRequest)
-            for pin in pins {
-                context.delete(pin)
-                print("DEBUG: pin deleted successfully")
-            }
-        } catch let error {
-            showError(title: "Unable to fetch photos from Core Data.", message: error.localizedDescription)
-        }
-        
-        try? context.save()
-    }
-    
-    func deletePhotosFromCoreData() {
-        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
-        
-        do {
-            let photos = try context.fetch(fetchRequest)
-            for photo in photos {
-                context.delete(photo)
-                print("DEBUG: photo deleted successfully")
-            }
-        } catch let error {
-            showError(title: "Unable to fetch photos from Core Data.", message: error.localizedDescription)
-        }
-        
-        try? context.save()
-    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
